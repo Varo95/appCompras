@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "appcompras-2a58f"
+  },
+  "targets": {
+    "appcompras-2a58f": {
+      "hosting": {
+        "appCompras": [
+          "appcompras-2a58f"
+        ]
+      }
+    }
+  }
+}

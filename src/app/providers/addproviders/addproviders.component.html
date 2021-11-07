@@ -1,0 +1,74 @@
+<div class="row justify-content-md-center">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+        <h2>Añadir nuevo proveedor</h2>
+        <form (ngSubmit)="onSubmit()" #formpro="ngForm">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="name.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="name.invalid && name.touched"></fa-icon>
+                <input type="text" class="form-control" id="nombre" ngModel name="name" #name=ngModel required>
+                <p class="alert alert-danger" *ngIf="email.invalid && email.touched">Por favor introduzca un nombre válido.</p>
+            </div>
+            <div class="form-group">
+                <label for="cif">C.I.F.</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="cif.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="cif.invalid && cif.touched"></fa-icon>
+                <input type="text" class="form-control" id="cif" ngModel name="cif" #cif=ngModel required>
+                <p class="alert alert-danger" *ngIf="email.invalid && email.touched">Por favor introduzca un CIF correcto.</p>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="address.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="address.invalid && address.touched"></fa-icon>
+                <input type="text" class="form-control" id="direccion" ngModel name="address" #address=ngModel required>
+                <p class="alert alert-danger" *ngIf="address.invalid && address.touched">Por favor introduzca una dirección correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="cp">Código Postal</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="pc.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="pc.invalid && pc.touched"></fa-icon>
+                <input type="text" class="form-control" id="cp" ngModel name="pc" #pc=ngModel required pc>
+                <p class="alert alert-danger" *ngIf="pc.invalid && pc.touched">Por favor introduzca una dirección de codigo postal correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="localidad">Localidad</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="location.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="location.invalid && location.touched"></fa-icon>
+                <input type="text" class="form-control" id="localidad" ngModel name="location" #location=ngModel required>
+                <p class="alert alert-danger" *ngIf="location.invalid && location.touched">Por favor introduzca una Localidad correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia</label>
+                <select class="form-select form-select" aria-label=".form-select-lg example" id="provincia" ngModel name="provincia">
+                    <option value="">Seleccione la provincia</option>
+                    <option *ngFor="let provincia of provincias" [value]="provincia">{{provincia}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="phone.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="phone.invalid && phone.touched"></fa-icon>
+                <input type="number" class="form-control" id="telefono" ngModel name="phone" #phone=ngModel required phone>
+                <p class="alert alert-danger" *ngIf="phone.invalid && phone.touched">Por favor introduzca un teléfono correcto.</p>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="email.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="email.invalid && email.touched"></fa-icon>
+                <input type="text" class="form-control" id="email" ngModel name="email" #email=ngModel required email>
+                <p class="alert alert-danger" *ngIf="email.invalid && email.touched">Por favor introduzca una dirección de correo correcta.</p>
+            </div>
+            <div class="form-group">
+                <label for="contacto">Persona de contacto</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="contact.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="contact.invalid && contact.touched"></fa-icon>
+                <input type="text" class="form-control" id="contacto" ngModel name="contact" #contact=ngModel required>
+                <p class="alert alert-danger" *ngIf="contact.invalid && contact.touched">Por favor introduzca un contacto válido.</p>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-success" [disabled]="!formpro.valid">Añadir Proveedor</button>
+            <p class="alert alert-danger " *ngIf="!formpro.valid">Por favor complete todos los campos</p>
+            <hr>
+        </form>
+    </div>
+</div>

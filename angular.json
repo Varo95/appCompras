@@ -24,12 +24,23 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "*",
+                "input": "node_modules/font-awesome/svgs",
+                "output": "assets/svgs/"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/google-fonts-webpack-plugin/node_modules/source-map/dist/source-map.min.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/jquery/external/sizzle/dist/sizzle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -37,7 +48,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -97,6 +108,16 @@
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "appCompras:build:production",
+            "firebaseProject": "appcompras-2a58f",
+            "firebaseHostingSite": "appcompras-2a58f"
           }
         }
       }

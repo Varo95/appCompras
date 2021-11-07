@@ -1,0 +1,59 @@
+<div class="row justify-content-center" >
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset 2">
+        <h2>Añadir nuevo presupuesto</h2>
+        <a class="btn btn-primary float-md-right" routerLink="/budgets">Regresar al listado</a>
+        <br> 
+        <form [formGroup]="budgetForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="proveedor">Proveedor</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="budgetForm.controls.provider.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="budgetForm.controls.provider.invalid && budgetForm.controls.provider.touched"></fa-icon>
+                <input type="text" class="form-control" id="proveedor" formControlName="provider">
+                <p class="alert alert-danger" *ngIf="budgetForm.controls.provider.invalid && budgetForm.controls.provider.touched">Por favor introduzca un proveedor válido.</p>
+            </div>
+            <div class="form-group col-6 col-md-4 justify-content-center">
+                <label for="fecha">Fecha Presupuesto</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="budgetForm.controls.date.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="budgetForm.controls.date.invalid && budgetForm.controls.date.touched"></fa-icon>
+                <input type="date" class="form-control" id="fecha" formControlName="date">
+                <p class="alert alert-danger" *ngIf="budgetForm.controls.date.invalid && budgetForm.controls.date.touched">Por favor introduzca una fecha válida.</p>
+            </div>
+            <div class="form-group">
+                <label for="concepto">Concepto</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="budgetForm.controls.concept.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="budgetForm.controls.concept.invalid && budgetForm.controls.concept.touched"></fa-icon>
+                <input type="text" class="form-control" id="concepto" formControlName="concept">
+                <p class="alert alert-danger" *ngIf="budgetForm.controls.concept.invalid && budgetForm.controls.concept.touched">Por favor introduzca un concepto válido.</p>
+            </div>
+            <div class="form-group">
+                <label for="base">Base Imponible</label>
+                <fa-icon [icon]="valid" style="color: #42A948" *ngIf="budgetForm.controls.base.valid"></fa-icon>
+                <fa-icon [icon]="error" style="color: #a94442" *ngIf="budgetForm.controls.base.invalid && budgetForm.controls.base.touched"></fa-icon>
+                <input type="number" class="form-control" id="base" formControlName="base">
+                <p class="alert alert-danger" *ngIf="budgetForm.controls.base.invalid && budgetForm.controls.base.touched">Por favor introduzca una base válida.</p>
+            </div>
+            <div class="form-group">
+                <label for="type">Tipo de IVA</label>
+                <select class="form-control" id="type" formControlName="type">
+                    <option value="">Seleccione...</option>
+                    <option value=0> 0 %</option>
+                    <option value=0.04> 4 %</option>
+                    <option value=0.10>10 %</option>
+                    <option value=0.21>21 %</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="iva">Importe IVA</label>
+                <input type="number" class="form-control" id="iva" formControlName="iva" [(ngModel)]="budgetForm.value.iva" readonly>
+            </div>
+            <div class="form-group">
+                <label for="total">Total Factura IVA Incluido</label>
+                <input type="number" class="form-control" id="total" formControlName="total" [(ngModel)]="budgetForm.value.total" readonly>
+            </div>
+            <br />
+            <button class="btn btn-primary" type="submit" [hidden]="!budgetForm.valid" >Añadir Presupuesto</button>
+            <a class="btn btn-danger" routerLink="/budgets">Cancelar</a>
+            <hr>
+        </form>
+    </div>
+</div>
