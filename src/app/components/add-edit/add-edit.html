@@ -1,0 +1,93 @@
+<h1>Añadir {{this.itemType === 'Budget' ? 'Presupuesto' : 'Proveedor'}}</h1>
+<form [formGroup]="this.form">
+  @if(this.itemType === 'Budget'){
+    <mat-form-field class="input-group">
+      <mat-label>Proveedor</mat-label>
+      <mat-icon matPrefix fontIcon="person"></mat-icon>
+      <mat-select formControlName="provider">
+        @for(provider of (this.providers$ | async); track provider.name){
+          <mat-option [value]="provider.name">{{provider.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Fecha</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Concepto</mat-label>
+      <input matInput formControlName="concept">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Base Imponible</mat-label>
+      <input type="number" matInput formControlName="base">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Tipo de Iva</mat-label>
+      <mat-select formControlName="type">
+          <mat-option value="0">0 %</mat-option>
+          <mat-option value="0.04">4 %</mat-option>
+          <mat-option value="0.1">10 %</mat-option>
+          <mat-option value="0.21">21 %</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Importe IVA</mat-label>
+      <input matInput formControlName="iva" readonly [value]="this.form.value.iva">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Total factura IVA incluido</mat-label>
+      <input matInput formControlName="total" readonly [value]="this.form.value.total">
+    </mat-form-field>
+  }@else if(this.itemType === 'Provider'){
+    <mat-form-field class="input-group">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>C.I.F</mat-label>
+      <input matInput formControlName="cif">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="direction">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Código Postal</mat-label>
+      <input matInput formControlName="cp">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Localidad</mat-label>
+      <input matInput formControlName="location">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Provincia</mat-label>
+      <mat-select formControlName="province">
+        @for(province of this.getProvinces(); track province){
+          <mat-option [value]="province">{{province}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Teléfono</mat-label>
+      <input type="number" matInput formControlName="phone">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Correo Electrónico</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <mat-form-field class="input-group">
+      <mat-label>Persona de Contacto</mat-label>
+      <input matInput formControlName="contact">
+    </mat-form-field>
+  }
+  <!-- Botón de guardar siempre visible abajo -->
+  <div class="d-grid gap-2 mt-4">
+    <button matButton="outlined" [disabled]="!this.form.valid" (click)="this.saveItem()" class="w-100">Guardar
+      <mat-icon iconPositionEnd fontIcon="save"></mat-icon>
+    </button>
+  </div>
+</form>

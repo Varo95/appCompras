@@ -1,0 +1,33 @@
+<div class="main">
+  <div class="register-form">
+    <div class="w-100">
+      <div class="form-inputs">
+        <form [formGroup]="this.registerForm" (ngSubmit)="this.onSubmit()">
+          <mat-form-field class="input-group">
+            <mat-label>Correo Electrónico</mat-label>
+            <mat-icon matPrefix fontIcon="person"></mat-icon>
+            <input type="email" id="inputEmail" matInput formControlName="email" autofocus>
+            @if(this.formErrors['email'] !== ''){
+              <p class="alert alert-danger">
+                {{ this.formErrors['email'] }}
+              </p>
+            }
+          </mat-form-field>
+          <mat-form-field class="input-group">
+            <mat-label>Contraseña</mat-label>
+            <mat-icon matPrefix fontIcon="lock"></mat-icon>
+            <input type="password" id="inputPassword" matInput formControlName="password">
+            @if(this.formErrors['password'] !== ''){
+              <p class="alert alert-danger">
+                {{ this.formErrors['password'] }}
+              </p>
+            }
+          </mat-form-field>
+          <button [disabled]="!(this.formErrors['password'] === '' && this.formErrors['email'] === '')" class="w-100 submit" matButton="filled" type="submit">Registrarse<mat-icon iconPositionEnd fontIcon="send"/></button>
+        </form>
+      </div>
+      <mat-divider></mat-divider>
+      <button (click)="this.redirectLogin()" color="success" style="margin-top: 12px; margin-bottom: 12px" class="w-100" matButton="outlined">Iniciar Sesión</button>
+    </div>
+  </div>
+</div>

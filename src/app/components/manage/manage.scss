@@ -1,0 +1,19 @@
+.customContent{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+//Si el sistema está en modo claro
+@media (prefers-color-scheme: light) {
+  .customContent {
+    background-image: url('../../../assets/background.png');
+  }
+}
+
+// Si el sistema está en modo oscuro
+@media (prefers-color-scheme: dark) {
+  .customContent {
+    background-image: url('../../../assets/background-dark.png');
+  }
+}

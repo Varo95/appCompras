@@ -1,0 +1,32 @@
+<div class="main">
+  <div class="login-form">
+    <div class="w-100">
+      <div class="form-inputs">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="input-group">
+            <mat-label>Correo Electrónico</mat-label>
+            <mat-icon matPrefix fontIcon="person"></mat-icon>
+            <input type="email" id="inputEmail" matInput formControlName="email" autofocus>
+          </mat-form-field>
+          <mat-form-field class="input-group">
+            <mat-label>Contraseña</mat-label>
+            <mat-icon matPrefix fontIcon="lock"></mat-icon>
+            <input type="password" id="inputPassword" matInput formControlName="password">
+          </mat-form-field>
+          <button type="submit" matButton="filled" class="w-100" [disabled]="!loginForm.valid">Iniciar sesión<mat-icon iconPositionEnd fontIcon="login"></mat-icon></button>
+        </form>
+        <button matButton="outlined" (click)="this.login()" id="customBtn" class="w-100" style="margin-top: 12px; margin-bottom: 12px">
+          Continua con Google
+          <mat-icon iconPositionEnd class="bi bi-google"></mat-icon>
+        </button>
+        <mat-divider></mat-divider>
+        <button (click)="this.redirectRegister()" style="margin-top: 12px; margin-bottom: 12px" class="w-100" matButton="outlined">Registrarse</button>
+        @if (this.message) {
+          <p class="alert alert-danger">
+            El usuario o contraseña no es correcto
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
