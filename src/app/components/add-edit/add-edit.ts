@@ -47,8 +47,8 @@ export class AddEdit {
   public readonly form: FormGroup;
   public readonly itemType: 'Budget' | 'Provider';
   public readonly providers$: Observable<Provider[]>;
+  public readonly docId: DocumentReference | undefined;
   private readonly bottomSheetRef: MatBottomSheetRef<AddEdit, Budget | Provider> = inject<MatBottomSheetRef<AddEdit, Budget | Provider>>(MatBottomSheetRef);
-  private readonly docId: DocumentReference | undefined;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: Budget | Provider | undefined,
               private readonly firestore: FirestoreService,
@@ -85,7 +85,6 @@ export class AddEdit {
   public async saveItem(): Promise<void> {
     this.data = this.form.value;
     this.data!.documentRef = this.docId;
-    console.log(JSON.stringify(this.data));
     this.bottomSheetRef.dismiss(this.data);
   }
 

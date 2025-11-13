@@ -1,4 +1,4 @@
-<h1>Añadir {{this.itemType === 'Budget' ? 'Presupuesto' : 'Proveedor'}}</h1>
+<h1>{{this.docId !== undefined ? 'Editar' : 'Añadir'}} {{this.itemType === 'Budget' ? 'Presupuesto' : 'Proveedor'}}</h1>
 <form [formGroup]="this.form">
   @if(this.itemType === 'Budget'){
     <mat-form-field class="input-group">
